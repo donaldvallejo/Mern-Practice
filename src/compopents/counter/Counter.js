@@ -2,13 +2,6 @@ import React from 'react'
 
 const Counter = () => {
     const [count, setcount] = React.useState(0)
-    
-    // const increment = () => {
-    //     setcount(count => count + 1)
-    // }
-    // const decrement = () => {
-    //     setcount(count => count - 1)
-    // }
 
     const changeVal = (e) => {
         console.log(e.target.className)
