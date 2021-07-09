@@ -1,4 +1,5 @@
 const app = require("express")
+const { Model } = require("../models/model")
 const router = app.Router()
 
 const availableRoutes = [
@@ -31,8 +32,13 @@ router.get("/secondRoute", (req, res) => {
 
 router.post("/new", (req, res) => {
     const newpost = req.body;
-    availableRoutes.push(newpost)
-    res.json(availableRoutes)
-})
+    Model.create(...req.body)
+    .then(newpost => {
+        res.json(newpost)
+    })
+    .catch(err => {
+        res.status(500).json(err);
+    });
+});
 
 module.exports = router;
