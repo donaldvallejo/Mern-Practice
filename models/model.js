@@ -9,4 +9,4 @@ const newSchema = new mongoose.Schema({
     }
 })
 
-module.exports = newSchema = mongoose.model("new", newSchema);
+module.exports = newpost = mongoose.model("newpost", newSchema);
