@@ -1,5 +1,4 @@
 const app = require("express")
-const { Model } = require("../models/model")
 const router = app.Router()
 
 const { Post } = require("../models")
@@ -46,7 +45,7 @@ router.post("/post/new", (req, res) => {
       return res.status(400).json({success: false, message: "invalid input" })
     }
     const newPost = new Post({names, words});
-    res.json({success: "true", data: {names: newPost.names, words: newPost.words} })
+    res.json({success: true, data: {names: newPost.names, words: newPost.words} })
 })
 
 module.exports = router
