@@ -2,6 +2,8 @@ const app = require("express")
 const { Model } = require("../models/model")
 const router = app.Router()
 
+const { Post } = require("../models")
+
 const availableRoutes = [
     {
         route: "/api",
@@ -14,7 +16,7 @@ const availableRoutes = [
         description: "get the second route"
     },
     {
-        route: "/api/new",
+        route: "/api/post/new",
         request: "POST",
         description: "create new post"
     },
@@ -30,15 +32,21 @@ router.get("/secondRoute", (req, res) => {
     res.send("second route")
 })
 
+/*
 router.post("/new", (req, res) => {
     const newpost = req.body;
-    Model.create(...req.body)
-    .then(newpost => {
-        res.json(newpost)
-    })
-    .catch(err => {
-        res.status(500).json(err);
-    });
-});
+    availableRoutes.push(newpost)
+    res.json(availableRoutes)
+})
+//*/
 
-module.exports = router;
+router.post("/post/new", (req, res) => {
+    const {names, words} = req.body
+    if (!names || !words || names === "" || words === "") {
+      return res.status(400).json({success: false, message: "invalid input" })
+    }
+    const newPost = new Post({names, words});
+    res.json({success: "true", data: {names: newPost.names, words: newPost.words} })
+})
+
+module.exports = router
