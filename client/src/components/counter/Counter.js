@@ -12,6 +12,7 @@ const Counter = () => {
             setcount(count - 1)
         }
     }
+    
     return (
         <div>
             <button className="plus" onClick={changeVal}>+</button>
