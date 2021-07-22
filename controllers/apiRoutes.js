@@ -40,12 +40,12 @@ router.post("/new", (req, res) => {
 //*/
 
 router.post("/post/new", (req, res) => {
-    const {names, words} = req.body
-    if (!names || !words || names === "" || words === "") {
+    const {title, description} = req.body
+    if (!title || !description || title === "" || description === "") {
       return res.status(400).json({success: false, message: "invalid input" })
     }
-    const newPost = new Post({names, words});
-    res.json({success: true, data: {names: newPost.names, words: newPost.words} })
+    const newPost = new Post({title, description});
+    res.json({success: true, data: {title: newPost.title, description: newPost.description} })
 })
 
 module.exports = router
