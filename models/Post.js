@@ -1,10 +1,16 @@
 const mongoose = require("mongoose")
 
 const postSchema = new mongoose.Schema({
-    names: {
+    title: {
         type: String,
     },
-    words: {
+    genre: {
+        type: String,
+    },  
+    year: {
+        type: String,
+    },
+    rating: {
         type: String,
     }
 })
