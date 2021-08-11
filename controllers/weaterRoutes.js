@@ -9,7 +9,6 @@ require("dotenv").config();
 const city = "San Francisco";
 const country = "America";
 
-
 router.get("/", (req, res) => {
     const weatherCall = async (city, country) => {
         try {
