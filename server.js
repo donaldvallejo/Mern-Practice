@@ -15,7 +15,7 @@ app.use(cors());
 // routes
 app.use(require("./controllers/routes"))
 app.use("/api", require("./controllers/apiRoutes"))
-app.use("/weather", require("./controllers/weaterRoutes"))
+app.use("/api/weather", require("./controllers/weaterRoutes"))
 
 // mongoose connections
 mongoose.connect(

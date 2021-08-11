@@ -6,11 +6,17 @@ require("dotenv").config();
 // use the following line in case we run this file alone (to find the correct .env location)
 //const env = require("dotenv").config({ path: __dirname + "/../.env" });
 
-const city = "San Francisco";
-const country = "America";
+// testing our variables
+//const city = "San Francisco", country = "America";
 
+
+// weather route for getting info from openweathermap.org
+// use query for city and country
+// e.g. /api/weather?city=some_city&country=some_country
 router.get("/", (req, res) => {
-    const weatherCall = async (city, country) => {
+    
+    // Axios function to call the openweathermap api
+    const weatherCall = async (city, country, res) => {
         try {
             const response = await axios({
                 method: "GET",
@@ -25,7 +31,13 @@ router.get("/", (req, res) => {
         }
     }
     
-    weatherCall(city, country)
+    // check for incoming request for city and country
+    const {city, country} = req.query;
+    if (!city || !country || city.trim()==="" || country.trim()==="") {
+        return res.status(400).json({message: "city and/or country cannot be null or empty"})
+    }
+
+    weatherCall(city, country, res)
 })
 
 module.exports = router
